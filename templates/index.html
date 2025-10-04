@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LeafNet Disease Detector</title>
+</head>
+<body>
+    <h2>Upload a Plant Leaf Image for Disease Prediction</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <h3>Predicted Disease: {{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
