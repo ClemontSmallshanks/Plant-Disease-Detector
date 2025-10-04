@@ -1,17 +1,16 @@
-# app.py
+
 from flask import Flask, request, render_template
 import torch
 from torchvision import transforms
 from PIL import Image
 from load_model import load_model
 
-# Initialize Flask
+
 app = Flask(__name__)
 
-# Load model once at startup
+
 model = load_model("best_LeafNet.pth", num_classes=15)
 
-# Define preprocessing (must match your training transforms!)
 transform = transforms.Compose([
     transforms.Resize(256),
     transforms.CenterCrop(224),
@@ -36,7 +35,6 @@ def index():
         file = request.files["file"]
         if file:
             img = Image.open(file.stream).convert("RGB")
-            # Preprocess image as in leafnet.ipynb
             img = transform(img).unsqueeze(0)  
 
             with torch.no_grad():
